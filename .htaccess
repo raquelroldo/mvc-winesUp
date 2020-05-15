@@ -4,9 +4,9 @@ AddDefaultCharset UTF-8
 Options +FollowSymLinks -MultiViews
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /backend/PHP/forum_mvc_virtual_path/
+RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /backend/PHP/forum_mvc_virtual_path/index.php [L]
+RewriteRule . /index.php [L]
 </IfModule>
