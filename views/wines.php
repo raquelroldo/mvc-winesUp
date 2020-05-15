@@ -5,7 +5,7 @@
     <title>Wines</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/style/main.css">
-    <link rel="stylesheet" href="../assets/style/home.css">
+    <link rel="stylesheet" href="../assets/style/wines.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -15,12 +15,10 @@
     <header>
       <div class="wrapper">
           <nav class="navbar navbar-expand-lg navbar-dark">
-            <!-- <div class="navbar-header"> -->
             <a href="home.html" class="main-title navbar-brand">WinesUp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- </div> -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -37,23 +35,52 @@
           </nav>
       </div>
     </header>
-    <div class="container">
-      <h1 class="list-title">My Wines</h1>
-      <div class="component-wrapper">
+    <div class="container d-flex justify-content-center">
+      <div class="list-wrapper">
+        <h1 class="title my-4">Wines</h1>
         <div class="item-wrapper">
-          <a href="wine-detail.html"  class="link item-content">
-            <div class="image-wrapper">
-              <img src="{{ wine.wineImagePath }}" class="wine-image" alt="wine image">
+            <a href="#" class="link item-content">
+            <div class="image-wrapper mr-3">
+                <img src="../assets/images/wine-bottle.jpg" class="wine-image" alt="">
             </div>
             <div class="item-text-wrapper">
-              <h4 class="item-title">{{ wine.wineType }} wine {{ wine.wineName }}</h4>
-              <p class="item-text">from {{ wine.wineRegion }}.</p>
-              <p class="item-text"> You have {{ wine.wineQuantity }} bottle/s at home.</p>
+                <h4 class="item-title">Red Wine Dona Ana</h4>
+                <p class="item-text">Douro</p>
+            </div>
+            </a>
+            <div class="item-btn-wrapper">
+            <button name="edit" type="button" class="btn btn-primary">Edit</button>
+            <button type="button" name="delete" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+        <div class="item-wrapper">
+          <a href="wine-detail.html" class="link item-content">
+             <div class="image-wrapper">
+              <img src="#" class="wine-image" alt="">
+            </div>
+            <div class="item-text-wrapper">
+              <h4 class="item-title">Red Wine Maria Ana</h4>
+              <p class="item-text">from Alentejo.</p>
             </div>
           </a>
           <div class="item-btn-wrapper">
-            <button [routerLink]="['/edit', wine.wineId]" type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-primary" (click)="removeWine(currentIndex)">Delete</button>
+            <button name="edit" type="button" class="btn btn-primary">Edit</button>
+            <button type="button" name="delete" class="btn btn-primary">Delete</button>
+          </div>
+        </div>
+        <div class="item-wrapper">
+          <a href="wine-detail.html" class="link item-content">
+            <div class="image-wrapper">
+              <img src="#" class="wine-image" alt="">
+            </div>
+            <div class="item-text-wrapper">
+              <h4 class="item-title">Red Wine Maria Ana</h4>
+              <p class="item-text">from Alentejo.</p>
+            </div>
+          </a>
+          <div class="item-btn-wrapper">
+            <button name="edit" type="button" class="btn btn-primary">Edit</button>
+            <button type="button" name="delete" class="btn btn-primary">Delete</button>
           </div>
         </div>
       </div>
@@ -65,6 +92,5 @@
         </div>
       </footer>
     </div>
-
   </body>
 </html>

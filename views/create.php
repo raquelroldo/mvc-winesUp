@@ -5,7 +5,7 @@
     <title>Create</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/style/main.css">
-    <link rel="stylesheet" href="../assets/style/home.css">
+    <link rel="stylesheet" href="../assets/style/create.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -15,12 +15,10 @@
     <header>
       <div class="wrapper">
           <nav class="navbar navbar-expand-lg navbar-dark">
-            <!-- <div class="navbar-header"> -->
             <a href="home.html" class="main-title navbar-brand">WinesUp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- </div> -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -37,17 +35,11 @@
           </nav>
       </div>
     </header>
-
     <div class="container rounded main-bg">
         <form method="post" action="#">
-            <h2 class="form-title">Add here a Wine</h2>
+            <h2 class="form-title pt-3">Add here a Wine</h2>
             <div class="row justify-content-around">
-              <div class="col-md-6 col-lg-12">
-                <!-- <div class="form-group">
-                  <label for="wine-id">Id: </label>
-                  <input id="wine-id" name="wine-id" class="form-control" type="number"
-                  placeholder="Id wine" />
-                </div> -->
+              <div class="col-12">
                 <div class="form-group">
                     <label for="wine-name">The Name: </label>
                     <input id="wine-name" name="wine-name" class="form-control" type="text"
@@ -63,13 +55,8 @@
                     <input id="wine-region" name="wine-region" class="form-control" type="text"
                     placeholder="Region where the wine is produced" />
                 </div>
-                <div class="form-group">
-                  <label for="wine-quantity">The Quantity: </label>
-                  <input id="wine-quantity" name="wine-quantity" class="form-control" type="number"
-                  placeholder="How bottles do you have?" />
-                </div>
               </div>
-              <div class="col-md-6 col-lg-12" *ngIf="show">
+              <div class="col-12">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -92,22 +79,12 @@
                         <input id="wine-alcohol" name="wine-alcohol" class="form-control" type="number"
                         placeholder="How much alcohol it has?" />
                     </div>
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
                         <label for="wine-grapes">The Grapes: </label>
                         <input id="wine-grapes" name="wine-grapes" class="form-control" type="text"
                         placeholder="What grapes it has?" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="wine-details">The Details: </label>
-                      <input id="wine-details" name="wine-details" class="form-control" type="text"
-                      placeholder="Would you like to add some details?" />
-                    </div>
-                    <div class="form-group">
-                      <label for="wine-consump">The Consumption: </label>
-                      <input id="wine-consump" name="wine-consump" class="form-control" type="text"
-                      placeholder="It goes well with..." />
                     </div>
                     <div class="form-group">
                       <label for="wine-flavours">The Flavours: </label>
