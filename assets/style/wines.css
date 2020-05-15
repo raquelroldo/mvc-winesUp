@@ -1,17 +1,13 @@
-.list-title  {
-  color: #460546;
-}
-
-.component-wrapper {
+.list-wrapper {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   min-height: 180px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .item-wrapper {
-  max-width: 310px;
+  max-width: 100%;
   border: 1px solid #cecece;
   border-radius: 5px;
   padding: 10px;
@@ -50,7 +46,7 @@
 }
 
 .item-btn-wrapper {
-  text-align: center;
+  text-align: end;
 }
 
 .link {
