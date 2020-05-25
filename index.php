@@ -12,7 +12,7 @@ setlocale(LC_ALL, "pt_PT.UTF-8");
 
 $controller = "home";
 
-$controllers = ["home", "wines", "access"];
+$controllers = ["home", "wines", "access", "backoffice"];
 
 if(isset($url_parts[1]) && in_array($url_parts[1], $controllers)) {
     $controller = $url_parts[1];
