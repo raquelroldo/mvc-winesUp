@@ -3,7 +3,7 @@
     <?php if(isset($user)): ?>
         <h1 class="my-5 title">Atualizar Perfil</h1>
     <?php 
-    else: echo '<h1 class="my-5 title">Register</h1>';
+    else: echo '<h1 class="my-5 title">Registar</h1>';
     endif; ?>
         <div class="form-group">
             <label>
