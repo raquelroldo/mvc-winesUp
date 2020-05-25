@@ -1,124 +1,102 @@
-<!DOCTYPE html>
-<html lang="pt">
-  <head>
-    <meta charset="utf-8">
-    <title>Create</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/style/main.css">
-    <link rel="stylesheet" href="../assets/style/create.css">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <header>
-      <div class="wrapper">
-          <nav class="navbar navbar-expand-lg navbar-dark">
-            <a href="home.html" class="main-title navbar-brand">WinesUp</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="home.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="wines.html">Wines</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="create.html">Add Wines</a>
-                </li>
-              </ul>
+<div class="container rounded main-bg">
+    <form method="post" action="<?=$_SERVER["REQUEST_URI"]?>">
+        <?php if(isset($wine)): ?>
+            <h1 class="my-5 title">Atualizar Vinho</h1>
+        <?php 
+        elseif($delete_option): ?> <h2 class="form-title pt-3">Excluir vinho</h2>
+        <?php
+        else: ?> <h2 class="form-title pt-3">Adicione um novo vinho</h2>
+        <?php
+        endif;?>
+        <div class="row justify-content-around">
+          <div class="col-12">
+            <input name="wine_id" class="form-control" type="hidden"
+                <?php if(isset($wine)): ?> value="<?=$wine[0]["wine_id"]?>" <?php endif; ?> />
+            <div class="form-group">
+                <label for="name">Nome do vinho</label>
+                <input id="name" name="name" class="form-control" type="text"
+                placeholder="Qual é o nome do vinho?" autofocus="true" 
+                <?php if(isset($wine)): ?> value="<?=$wine[0]["name"]?>" <?php endif; ?> />
             </div>
-          </nav>
-      </div>
-    </header>
-    <div class="container rounded main-bg">
-        <form method="post" action="#">
-            <h2 class="form-title pt-3">Add here a Wine</h2>
-            <div class="row justify-content-around">
-              <div class="col-12">
+            <div class="form-group">
+                <label for="type">Tipo do Vinho</label>
+                <input id="type" name="type" class="form-control" type="text"
+                placeholder="Tinto, Branco, Verde..." 
+                <?php if(isset($wine)): ?> value="<?=$wine[0]["type"]?>" <?php endif; ?> />
+            </div>
+            <div class="form-group">
+                <label for="region">A Região</label>
+                <input id="region" name="region" class="form-control" type="text"
+                placeholder="Alentejo, Setúbal, Douro..." 
+                <?php if(isset($wine)): ?> value="<?=$wine[0]["region"]?>" <?php endif; ?> />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md-6">
                 <div class="form-group">
-                    <label for="wine-name">The Name: </label>
-                    <input id="wine-name" name="wine-name" class="form-control" type="text"
-                    placeholder="Enter the name of the wine" autofocus="true" />
+                    <label for="year">Ano</label>
+                    <input id="year" name="year" class="form-control" type="number"
+                    placeholder="2019, 2018, 2017..." 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["year"]?>" <?php endif; ?> />
                 </div>
                 <div class="form-group">
-                    <label for="wine-type">The Type: </label>
-                    <input id="wine-type" name="wine-type" class="form-control" type="text"
-                    placeholder="Enter the type of the wine" />
+                    <label for="producer">Casa / Adega de Produção</label>
+                    <input id="producer" name="producer" class="form-control" type="text"
+                    placeholder="Quem produz este vinho" 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["producer"]?>" <?php endif; ?> />
                 </div>
                 <div class="form-group">
-                    <label for="wine-region">The Region: </label>
-                    <input id="wine-region" name="wine-region" class="form-control" type="text"
-                    placeholder="Region where the wine is produced" />
+                    <label for="alcohol">Taxa de Álcool</label>
+                    <input id="alcohol" name="alcohol" class="form-control" type="number"
+                    placeholder="Qual a % de álcool deste vinho" 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["alcohol"]?>" <?php endif; ?> />
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="wine-rate">The Rate: </label>
-                        <input id="wine-rate" name="wine-rate" class="form-control" type="number"
-                        placeholder="How much do you like it (0 to 10)?" />
-                    </div>
-                    <div class="form-group">
-                        <label for="wine-year">The Year: </label>
-                        <input id="wine-year" name="wine-year" class="form-control" type="number"
-                        placeholder="Year when the wine was produced" />
-                    </div>
-                    <div class="form-group">
-                        <label for="wine-producer">The Producer: </label>
-                        <input id="wine-producer" name="wine-producer" class="form-control" type="text"
-                        placeholder="Who produced the wine" />
-                    </div>
-                    <div class="form-group">
-                        <label for="wine-alcohol">The Alcohol: </label>
-                        <input id="wine-alcohol" name="wine-alcohol" class="form-control" type="number"
-                        placeholder="How much alcohol it has?" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="wine-grapes">The Grapes: </label>
-                        <input id="wine-grapes" name="wine-grapes" class="form-control" type="text"
-                        placeholder="What grapes it has?" />
-                    </div>
-                    <div class="form-group">
-                      <label for="wine-flavours">The Flavours: </label>
-                      <input id="wine-flavours" name="wine-flavours" class="form-control" type="text"
-                      placeholder="Does it taste like chocolate or fruits?" />
-                    </div>
-                    <div class="form-group">
-                      <label for="wine-image">The Image: </label>
-                      <input id="wine-image" name="wine-image" class="form-control" type="url"
-                      placeholder="Add an image url to remember the wine" />
-                    </div>
-                    <div class="form-group">
-                      <label for="wine-notes">The Notes: </label>
-                      <input id="wine-notes" name="wine-notes" class="form-control" type="text"
-                      placeholder="Add a note to remember the moment" />
-                    </div>
-                  </div>
+                <div class="form-group">
+                    <label for="grapes">Castas / Uvas</label>
+                    <input id="grapes" name="grapes" class="form-control" type="text"
+                    placeholder="Castelão, Trincadeira, Syrah..." 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["grapes"]?>" <?php endif; ?> />
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-sm"> Save Wine</button>
+                    <label for="flavours">Sabores</label>
+                    <input id="flavours" name="flavours" class="form-control" type="text"
+                    placeholder="Frutos Vermelhos, Floral..." 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["flavours"]?>" <?php endif; ?> />
+                </div>
+                <div class="form-group">
+                    <label for="image_path">Imagem</label>
+                    <input id="image_path" name="image_path" class="form-control" type="url"
+                    placeholder="Add an image url to remember the wine" 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["image_path"]?>" <?php endif; ?> />
+                </div>
+                <div class="form-group">
+                    <label for="consumption">Dicas de Consumo</label>
+                    <input id="consumption" name="consumption" class="form-control" type="text"
+                    placeholder="Este vinho vai bem com...." 
+                    <?php if(isset($wine)): ?> value="<?=$wine[0]["consumption"]?>" <?php endif; ?> />
                 </div>
               </div>
             </div>
-        </form>
-    </div>
-    <div class="footer-wrapper">
-      <footer>
-        <div class="footer-content">
-          Copyright &copy; 2020 - Made with &#10084; by raquelRoldo
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="form-group">
+                        <button type="submit" name="send" class="btn btn-primary btn-sm"><?php if($delete_option): echo 'Excluir'; else: echo 'Gravar'; endif; ?></button>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <a href="<?=BASE_PATH?>backoffice/wines" class="link">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+    </form>
+</div>
 
-  </body>
-</html>
