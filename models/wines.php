@@ -40,7 +40,8 @@ class Wines extends Base {
             !empty($data["producer"]) &&
             !empty($data["alcohol"]) &&
             !empty($_SESSION["user_id"])
-        ) {
+            ) {
+                
             $query = $this->db->prepare("
                 INSERT INTO wines
                 (name, type, region, year, grapes, producer, alcohol, 
@@ -48,7 +49,7 @@ class Wines extends Base {
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
 
-            $query->execute([
+            $status = $query->execute([
                 $data["name"],
                 $data["type"],
                 $data["region"],
@@ -61,7 +62,8 @@ class Wines extends Base {
                 $data["consumption"] ?? "",
                 $_SESSION["user_id"]
             ]);
-            return true;
+
+            return $status;
         }
         else {
             return false;
