@@ -1,6 +1,6 @@
 
 <div class="container rounded main-bg">
-    <form method="post" action="<?=$_SERVER["REQUEST_URI"]?>">
+    <form method="post" action="<?=$_SERVER["REQUEST_URI"]?>" enctype="multipart/form-data">
         <?php if(isset($wine)): ?>
             <h1 class="my-5 title">Atualizar Vinho</h1>
         <?php 
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <label for="year">Ano</label>
                     <input id="year" name="year" class="form-control" type="number"
-                    placeholder="2019, 2018, 2017..." 
+                    placeholder="2019, 2018, 2017..." min="1900" max="2099" step="1"
                     <?php if(isset($wine)): ?> value="<?=$wine[0]["year"]?>" <?php endif; ?> />
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="alcohol">Taxa de Álcool</label>
                     <input id="alcohol" name="alcohol" class="form-control" type="number"
-                    placeholder="Qual a % de álcool deste vinho" 
+                    placeholder="Qual a % de álcool deste vinho"  step=".01"
                     <?php if(isset($wine)): ?> value="<?=$wine[0]["alcohol"]?>" <?php endif; ?> />
                 </div>
                 <div class="form-group">
@@ -69,9 +69,13 @@
                 </div>
                 <div class="form-group">
                     <label for="image_path">Imagem</label>
-                    <input id="image_path" name="image_path" class="form-control" type="url"
-                    placeholder="Add an image url to remember the wine" 
-                    <?php if(isset($wine)): ?> value="<?=$wine[0]["image_path"]?>" <?php endif; ?> />
+                    <input id="image_path" name="image_path" class="form-control-file" type="file"
+                    placeholder="Carregue uma image do vinho" 
+                    <?php if(isset($wine)) { 
+                        $img_path = $wine[0]["image_path"];
+                        str_replace("assets/images/", "", $img_path);
+                        ?> value="<?=$img_path?>" <?php } ?> />
+                    <input type="hidden" name="old_img" value="<?=$img_path?>"/>
                 </div>
                 <div class="form-group">
                     <label for="consumption">Dicas de Consumo</label>
@@ -86,7 +90,7 @@
             <div class="row">
                 <div class="col-auto">
                     <div class="form-group">
-                        <button type="submit" name="send" class="btn btn-primary btn-sm"><?php if($delete_option): echo 'Excluir'; else: echo 'Gravar'; endif; ?></button>
+                        <button type="submit" name="send" class="btn btn-primary btn-sm"><?php if($delete_option): echo "Excluir"; else: echo "Gravar"; endif; ?></button>
                     </div>
                 </div>
                 <div class="col-auto">

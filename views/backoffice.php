@@ -7,6 +7,8 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="/assets/style/main.css">
+        <link rel="stylesheet" href="/assets/style/wines.css">
+        <script src="<?=BASE_PATH?>assets/js/main.js"></script>
     </head>
     <body> 
         <?php include("./assets/templates/header.php");?>
@@ -15,8 +17,8 @@
             <div class="row pt-4">
                 <div class="col-2">
                     <nav class="nav flex-column">
-                        <a class="nav-link link <?php if(!$wines_link): echo 'active'; endif;?>" href="<?=BASE_PATH?>backoffice/users">Users</a>
-                        <a class="nav-link link <?php if($wines_link): echo 'active'; endif;?>" href="<?=BASE_PATH?>backoffice/wines">Vinhos</a>
+                        <a class="nav-link link <?php if($users_path): echo "active"; endif;?>" href="<?=BASE_PATH?>backoffice/users">Users</a>
+                        <a class="nav-link link <?php if($wines_path): echo "active"; endif;?>" href="<?=BASE_PATH?>backoffice/wines">Vinhos</a>
                     </nav>
                 </div>
                 <div class="col-10">
@@ -25,7 +27,7 @@
                     if((isset($create_option) || isset($edit_option) || isset($delete_option)) && ($edit_option || $create_option || $delete_option)) {
                         include("create.php");
                     } elseif (isset($detail_option)) {
-                        require("admin-wine-detail.php");
+                        include("admin-wine-detail.php");
                     }else { ?>
                     
                     <div class="d-flex justify-content-center">
@@ -33,15 +35,20 @@
                             <h1 class="title my-4">A Nossa Adega</h1>
                             <a href="wines/create" class="link">Adicionar</a>
                             <?php 
+                            
                             foreach($wines as $wine) { ?>
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4 image-wrapper">
-                                        <img src="../assets/images/wine-bottle.jpg" class="card-img wine-image" alt="...">
+                                    <?php if ($wine["image_path"] !== null  && !empty($wine["image_path"])) { ?>
+                                        <img src="<?=BASE_PATH?><?=$wine["image_path"]?>" class="card-img wine-image" alt="...">
+                                    <?php } else {?>
+                                        <img src="<?=BASE_PATH?>assets/images/threeGlasses.jpg" class="card-img wine-image" alt="...">
+                                    <?php }?>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title">Vinho  <?=$wine["type"].' '.$wine["name"]?></h5>
+                                            <h5 class="card-title">Vinho  <?=$wine["type"]." ".$wine["name"]?></h5>
                                         </div>
                                         <div class="card-footer mt-5 d-flex justify-content-around">
                                             <a href="wines/edit/<?=$wine["wine_id"]?>" class="link">Editar</a>

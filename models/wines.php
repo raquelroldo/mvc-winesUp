@@ -5,7 +5,7 @@ class Wines extends Base {
 
     public function getList() {
         $query = $this->db->prepare("
-            SELECT name, type, wine_id
+            SELECT name, type, wine_id, image_path
             FROM wines
         ");
 
@@ -28,7 +28,7 @@ class Wines extends Base {
         return $wine;
     }
 
-    public function create($data) {
+    public function create($data, $file) {
         $data = $this->sanitizer($data);
         
         if(
@@ -48,6 +48,10 @@ class Wines extends Base {
                     flavours, image_path, consumption, user_id)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
+            
+            if (isset($file["image_path"]["name"])) {
+                $image_file = "assets/images/".basename($file["image_path"]["name"]);
+            }
 
             $status = $query->execute([
                 $data["name"],
@@ -58,7 +62,7 @@ class Wines extends Base {
                 $data["producer"],
                 $data["alcohol"],
                 $data["flavours"] ?? "",
-                $data["image_path"] ?? "",
+                $file["image_path"] ? $image_file : "",
                 $data["consumption"] ?? "",
                 $_SESSION["user_id"]
             ]);
@@ -70,7 +74,7 @@ class Wines extends Base {
         }
     }
 
-    public function update($data) {
+    public function update($data, $file) {
         $data = $this->sanitizer($data);
 
         if(
@@ -101,6 +105,16 @@ class Wines extends Base {
                 WHERE wine_id = ?
             ");
 
+            if (isset($file["image_path"]["name"])) {
+                $image_file = "assets/images/".basename($file["image_path"]["name"]);
+                $old_img = $data["old_img"];
+                if ($image_file != "assets/images/") {
+                    move_uploaded_file($_FILES["image_path"]["tmp_name"], $image_file);
+                } else {
+                    $image_file = $old_img;
+                }
+            }
+
             $query->execute([
                 $data["name"],
                 $data["type"],
@@ -110,7 +124,7 @@ class Wines extends Base {
                 $data["producer"],
                 $data["alcohol"],
                 $data["flavours"] ?? "",
-                $data["image_path"] ?? "",
+                $file["image_path"] ? $image_file : "",
                 $data["consumption"] ?? "",
                 $_SESSION["user_id"],
                 $data["wine_id"]
