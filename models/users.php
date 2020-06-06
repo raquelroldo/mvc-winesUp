@@ -139,9 +139,9 @@ class Users extends Base {
                     password = ?,
                     email = ?,
                     name = ?,
-                    birth_date = ?,
-                    admin = ?
+                    birth_date = ?
                 WHERE 
+                    user_id = ? AND
                     user_id = ?
             ");
 
@@ -150,7 +150,39 @@ class Users extends Base {
                 $data["email"],
                 $data["name"],
                 $data["birth_date"],
-                $data["admin"] ? 1 : 0,
+                $data["user_id"],
+                $_SESSION["user_id"]
+            ]);
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function updateByAdmin($data) {
+        $data = $this->sanitizer($data);
+        if( 
+            !empty($data["email"]) &&
+            filter_var($data["email"], FILTER_VALIDATE_EMAIL)
+        ) {
+            $query = $this->db->prepare("
+                UPDATE
+                    users
+                SET
+                    email = ?,
+                    name = ?,
+                    birth_date = ?,
+                    admin = ?
+                WHERE 
+                    user_id = ?
+            ");
+
+            $result = $query->execute([
+                $data["email"],
+                $data["name"],
+                $data["birth_date"], 
+                isset($data["admin"]) ? 1 : 0,
                 $data["user_id"]
             ]);
             return $result;
@@ -164,12 +196,10 @@ class Users extends Base {
     
         $query = $this->db->prepare("
             DELETE FROM users
-            WHERE user_id = ? AND
-                user_id = ?
+            WHERE user_id = ? 
         ");
 
-        return $query->execute([ $data["id"],  $data["user_id"] ]);
-
+        return $query->execute([ $data["user_id"] ]);
     }
 
 }
