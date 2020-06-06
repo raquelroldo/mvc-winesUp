@@ -1,5 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>WinesUp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/style/main.css">
+    </head>
+    <body>
 <?php 
-  require("./assets/templates/header.php");
+  include("./assets/templates/header.php");
 
     if(isset($message)) {
         echo '<p role="alert">'. $message .'</p>';
@@ -11,7 +22,7 @@
           <div class="form-group">
               <label>
                   E-mail
-                  <input type="text" name="email" class="form-control" maxlength="64" required>
+                  <input type="text" name="email" class="form-control" maxlength="64" autofocus required>
               </label>
           </div>
           <div class="form-group">
@@ -25,6 +36,4 @@
           </div>
       </form>
     </div>
-<?php 
-  require("./assets/templates/footer.php");
-?>
+<?php include("./assets/templates/footer.php");?>

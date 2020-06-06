@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
     <form method="post" action="<?=$_SERVER["REQUEST_URI"]?>">
-        <h1 class="mb-5 title"><?php if(isset($user)): ?>Atualizar Utilizador<?php else: ?>Criar novo Utilizador <?php endif; ?></h1>
+        <h1 class="mb-5 title"><?php if(isset($user) && $delete_option): echo 'Excluir Utilizador'; elseif(isset($user) && !$delete_option): echo 'Atualizar Utilizador'; else: echo 'Criar novo Utilizador'; endif; ?></h1>
         <input name="user_id" class="form-control" type="hidden" <?php if(isset($user)): ?> value="<?=$user["user_id"]?>" <?php endif; ?> />
         <div class="form-group">
             <label>
@@ -23,13 +23,13 @@
         <div class="form-group">
             <label>
                 Password
-                <input type="password" name="password" class="form-control" maxlength="1000" minlength="6" required>
+                <input type="password" name="password" class="form-control" maxlength="1000" minlength="6">
             </label>
         </div>
         <div class="form-group">
             <label>
                 Password Repeat
-                <input type="password" name="rep_password" class="form-control" maxlength="1000" minlength="6" required>
+                <input type="password" name="rep_password" class="form-control" maxlength="1000" minlength="6">
             </label>
         </div>
         <div class="form-check">
@@ -40,7 +40,7 @@
             </label>
         </div>
         <div class="form-group">
-            <button type="submit" class="link" name="send">Gravar</button>
+            <button type="submit" class="link" name="send"><?php if(isset($user) && $delete_option): echo "Deletar"; else: echo "Gravar"; endif; ?></button>
             <a href="<?=BASE_PATH?>backoffice/users" class="ml-3 link">Cancelar</a>
         </div>
     </form>
