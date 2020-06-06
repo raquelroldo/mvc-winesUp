@@ -20,15 +20,16 @@
                     <li class="nav-item">
                         <a class="nav-link mr-1" href="<?=BASE_PATH?>access/register"><span class="mr-3">|</span>Bem vindo(a), <?=$_SESSION["user_name"]?></a>
                     </li>
-                    <?php if($_SESSION["is_admin"] == 1) { ?>
+                <?php if($_SESSION["is_admin"] == 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=BASE_PATH?>backoffice/admin">(Admin)</a>
                     </li>
-                  
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=BASE_PATH?>access/logout">Sair</a>
-                </li><?php } 
-                } ?>
+                <?php } ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=BASE_PATH?>access/logout">Sair</a>
+                    </li>
+                    <?php
+                    } ?>
                 </ul>
             </div>
         </nav>
