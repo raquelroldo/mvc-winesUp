@@ -9,7 +9,7 @@
 }
 
 .container {
-  min-height: calc(100vh - 237px);
+  min-height: 859px;
 }
 
 /* *Header */
@@ -22,6 +22,16 @@ header {
   z-index: 1;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.gif-wrapper {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.gif {
+  width: 100%;
 }
 
 .main-title {
@@ -68,6 +78,8 @@ header {
   font-weight: 900;
 }
 
+
+
 @media (min-width: 1090px) {
   .wrapper {
     max-width: 1000px;
@@ -75,10 +87,10 @@ header {
 }
 
 /* *Footer */
-.footer-wrapper {
+/* .footer-wrapper {
   width: 100%;
   margin-top: 80px;
-}
+} */
 
 .footer-content {
   text-align: center;
