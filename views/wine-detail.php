@@ -8,17 +8,22 @@
             crossorigin="anonymous">
         <link rel="stylesheet" href="<?=BASE_PATH?>assets/style/main.css">
         <link rel="stylesheet" href="<?=BASE_PATH?>assets/style/wine-detail.css">
+        <script src="<?=BASE_PATH?>assets/js/main.js"></script>
     </head>
     <body>
 <?php 
 require("assets/templates/header.php");
-  if (isset($wine)) {
+if (isset($wine)) {
 ?>
 <div class="d-flex justify-content-center my-4">
     <div class="card p-1" style="width: 40rem;">
         <div class="row">
             <div class="col-md-4 image-wrapper">
-                <img src="<?=BASE_PATH?>assets/images/wine-bottle.jpg" class="card-img wine-image" alt="...">
+            <?php if (!empty($wine[0]["image_path"])) { ?>
+                <img src="<?=BASE_PATH?>assets/images/<?=$wine[0]["image_path"]?>" class="card-img wine-image" alt="...">
+            <?php } else {?>
+                <img src="<?=BASE_PATH?>assets/images/threeGlasses.jpg" class="card-img wine-image" alt="...">
+            <?php }?>
             </div>
             <div class="col-md-8 card-body">
                 <p>Este é o vinho <?=$wine[0]["type"]?></p>
@@ -33,6 +38,6 @@ require("assets/templates/header.php");
         </div>
     </div>
 </div>
-<?php  } 
+  <?php  }
 require("assets/templates/footer.php");
 ?>
