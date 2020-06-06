@@ -2,11 +2,9 @@
 
 if(!isset($url_parts[2])) {
     header("HTTP/1.1 400 Bad Request");
-    die("Bad request");
 }
 
 require("models/users.php");
-require("./assets/templates/header.php");
 
 $userModel = new Users();
 
@@ -15,7 +13,6 @@ if($url_parts[2] === "register") {
         
         if($_SESSION["user_id"]) {
             $response = $userModel->update($_POST);
-            header("Location: " . BASE_PATH . "access/register");
             exit;
         } else {
             $response = $userModel->register($_POST);
@@ -50,9 +47,6 @@ else if($url_parts[2] === "login") {
 else {
     session_destroy();
     header("Location: " . BASE_PATH);
+
+    require_once("views/error.php");
 }
-
-require("./assets/templates/footer.php");
-
-
-

@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["is_admin"]) {
+if(isset($_SESSION["is_admin"]) === 1) {
 
     $wines_path = $url_parts[2] === "wines";
     $users_path = $url_parts[2] === "users";
@@ -24,12 +24,10 @@ if($_SESSION["is_admin"]) {
 
             if ($create_option || $edit_option || $delete_option && isset($_POST["send"])) {
                 if($create_option) {
-                    $response = $winesModel->create($_POST);
-                    
+                    $response = $winesModel->create($_POST, $_FILES);
                 } 
                 else if($edit_option) {
-                    $response = $winesModel->update($_POST);
-                    
+                    $response = $winesModel->update($_POST, $_FILES);
                 }
                 else if($delete_option) {
                     $response = $winesModel->delete($_POST);
@@ -63,7 +61,7 @@ if($_SESSION["is_admin"]) {
                 $response = $usersModel->create($_POST);
             } 
             else if($edit_option) {
-                $response = $usersModel->update($_POST);
+                $response = $usersModel->updateByAdmin($_POST);
             }
             else if($delete_option) {
                 $response = $usersModel->delete($_POST);
@@ -75,9 +73,8 @@ if($_SESSION["is_admin"]) {
             }
         }
     }
-}
-else {
-    header("Location: " . BASE_PATH);
+    require("views/backoffice.php");
+} else {
+    require_once("views/error.php");
 }
 
-require("views/backoffice.php");
