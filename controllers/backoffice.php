@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_SESSION["is_admin"]) === 1) {
+if(isset($_SESSION["is_admin"]) == 1) {
 
     $wines_path = $url_parts[2] === "wines";
     $users_path = $url_parts[2] === "users";
